@@ -1,4 +1,5 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
+import { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -24,11 +25,16 @@ const Arrow = styled.div`
   margin: auto;
   cursor: pointer;
   opacity: 0.5;
+  z-index: 2;
 `;
 
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
+  //  margin-left: 50px;
+  transition: all 1.5s ease;
+  transform: translateX(-200vw);
+  //overflow: hidden;
 `;
 
 const Slide = styled.div`
@@ -36,9 +42,11 @@ const Slide = styled.div`
   align-items: center;
   height: 100vh;
   width: 100vw;
+  background-color: #${(props) => props.bg};
 `;
 const ImageContainer = styled.div`
   flex: 1;
+  height: 100%;
 `;
 
 const Image = styled.img`
@@ -66,25 +74,27 @@ const Button = styled.button`
 `;
 
 const Slider = () => {
+  const [slideIndex, setslideIndex] = useState(second);
+  const handleClick = (direction) => {};
   return (
     <Container>
-      <Arrow direction="left">
+      <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowLeftOutlined />
       </Arrow>
       <Wrapper>
-        <Slide>
+        <Slide bg="fcf1ed">
           <ImageContainer>
-            <Image src="https://i.ibb.co/XsdmR2c/1.png" />
+            <Image src="https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267_960_720.jpg" />
           </ImageContainer>
           <InfoContainer>
-            <Title>asdas</Title>
+            <Title>SUMMER SALE</Title>
             <Description>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid
             </Description>
             <Button>SHOP NOW</Button>
           </InfoContainer>
         </Slide>
-        <Slide>
+        <Slide bg="fbf0f4">
           <ImageContainer>
             <Image src="https://i.ibb.co/XsdmR2c/1.png" />
           </ImageContainer>
@@ -96,7 +106,7 @@ const Slider = () => {
             <Button>SHOP NOW</Button>
           </InfoContainer>
         </Slide>
-        <Slide>
+        <Slide bg="fff">
           <ImageContainer>
             <Image src="https://i.ibb.co/XsdmR2c/1.png" />
           </ImageContainer>
@@ -121,7 +131,7 @@ const Slider = () => {
           </InfoContainer>
         </Slide>
       </Wrapper>
-      <Arrow direction="right">
+      <Arrow direction="right" onClick={() => handleClick("right")}>
         <ArrowRightOutlined />
       </Arrow>
     </Container>
