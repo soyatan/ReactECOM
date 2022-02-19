@@ -74,14 +74,20 @@ const Button = styled.button`
 `;
 
 const Slider = () => {
-  const [slideIndex, setslideIndex] = useState(second);
-  const handleClick = (direction) => {};
+  const [slideIndex, setslideIndex] = useState(0);
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setslideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+    } else {
+      setslideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+    }
+  };
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowLeftOutlined />
       </Arrow>
-      <Wrapper>
+      <Wrapper slideIndex={slideIndex}>
         <Slide bg="fcf1ed">
           <ImageContainer>
             <Image src="https://cdn.pixabay.com/photo/2021/10/13/11/29/girl-6706267_960_720.jpg" />
